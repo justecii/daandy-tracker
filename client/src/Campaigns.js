@@ -7,8 +7,7 @@ class Campaigns extends Component {
     constructor(props){
         super(props)
         this.state ={
-            campaigns: [],
-            toView: '' 
+            campaigns: []
         }
         this.componentDidMount = this.componentDidMount.bind(this)
     }
@@ -23,14 +22,8 @@ class Campaigns extends Component {
     }
     onClick(e){
         e.preventDefault();
-        console.log(e.target.value)
-        axios.post('/users/list', {
-            id: e.target.value
-        }).then(result =>{
-            console.log(result.data)
-            console.log(result.data[0].title)
-            // this.setState({toView: result})
-        }).then()
+        var id = e.target.value;
+        this.props.getCampaign(id)
     }
 
     render(){

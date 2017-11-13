@@ -10,6 +10,7 @@ import Login from './Login';
 import Logout from './Logout';
 import UserProfile from './UserProfile';
 import Campaigns from './Campaigns';
+import CurrentCamp from './CurrentCamp'
 import axios from 'axios';
 import {Row, Col} from 'react-materialize';
 
@@ -19,7 +20,8 @@ class App extends Component {
     this.state = {
       token: '',
       user: {},
-      campaign: ''
+      campaign: {},
+      isCampaign: false
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
@@ -63,38 +65,52 @@ class App extends Component {
       })
     }
   }
-  getCampaign(id){
-    console.log(id)
+  getCampaign(camp){
+    axios.post('/users/list', {
+      id: camp
+    }).then(result => {
+      this.setState({campaign: result.data[0]})
+      console.log(this.state.campaign)
+      this.setState({isCampaign: true})
+      // this.setState({toView: result})
+    })
   }
 
   render() {
     var theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
-      return (
-        <div className='App'>
-          <Row>
-            <Col s={4}>
-              <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
-            </Col>
-            <Col s={8}>
-              <Campaigns user={this.state.user} getCampaign={this.getCampaign} />
-            </Col>
-          </Row>
-        </div>
-      );
-    } else {
-      return (
-        <div className='App'>
-
-          <div className='SignupBox'>
-            <Signup lift={this.liftTokenToState} />
+      if (this.state.isCampaign === true) {
+        return (
+          <div>
+            <CurrentCamp user={this.state.user} campaign={this.state.campaign}/>
           </div>
-
-          <div className='LoginBox'>
-            <Login lift={this.liftTokenToState} />
+        )
+      } else {
+        return (
+          <div className='App'>
+            <Row>
+              <Col s={4}>
+                <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
+              </Col>
+              <Col s={8}>
+                <Campaigns user={this.state.user} getCampaign={this.getCampaign} />
+              </Col>
+            </Row>
           </div>
+        )};
+      } else {
+        return (
+          <div className='App'>
 
-        </div>
+            <div className='SignupBox'>
+              <Signup lift={this.liftTokenToState} />
+            </div>
+
+            <div className='LoginBox'>
+              <Login lift={this.liftTokenToState} />
+            </div>
+
+          </div>
       );
     }
   }

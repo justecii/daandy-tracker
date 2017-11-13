@@ -1,18 +1,23 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .SignupBox {
-  background: lightgreen;
-  padding: 0.5em;
+    background: lightgreen;
+    padding: 0.5em;
 }
 
 .LoginBox {
-  background: lightblue;
-  padding: 0.5em;
+    background: lightblue;
+    padding: 0.5em;
 }
 
 .LogoutBox {
-  background: lightred;
-  padding: 0.5em;
+    background: lightred;
+    padding: 0.5em;
+}
+
+.campaignList {
+    color: red;
+    margin: 20px;
 }
