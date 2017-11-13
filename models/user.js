@@ -62,7 +62,7 @@ userSchema.pre('save', function(next) {
 var campaignSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        // required: true,
         minlength: 1,
         maxlength: 99
     },

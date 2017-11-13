@@ -3,6 +3,7 @@ import Logout from './Logout';
 import Profile from './Profile';
 import Campaigns from './Campaigns';
 import NewCampaign from './NewCampaign';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -15,7 +16,7 @@ class UserProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: {}
+      user: this.props.user
     };
   }
 
@@ -33,8 +34,12 @@ class UserProfile extends Component {
               <Link to='/campaigns/new'>New Campaign</Link>
             </ul>
             <Route path='/profile' component={Profile} />
-            <Route path='/campaigns' component={Campaigns} />
-            <Route path='/campaigns/new' component={NewCampaign} />
+            <Route path='/campaigns' render={(props) => (
+              <Campaigns {...props} user={this.state.user} />
+            )} />
+            <Route path='/campaigns/new' render={(props) => (
+              <NewCampaign {...props} user={this.state.user} />
+            )} />
           </div>
           
         </Router>

@@ -9,18 +9,22 @@ import Signup from './Signup';
 import Login from './Login';
 import Logout from './Logout';
 import UserProfile from './UserProfile';
+import Campaigns from './Campaigns';
 import axios from 'axios';
+import {Row, Col} from 'react-materialize';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       token: '',
-      user: {}
+      user: {},
+      campaign: ''
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
+    this.getCampaign = this.getCampaign.bind(this)
   }
 
   liftTokenToState(data) {
@@ -59,13 +63,23 @@ class App extends Component {
       })
     }
   }
+  getCampaign(id){
+    console.log(id)
+  }
 
   render() {
     var theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       return (
         <div className='App'>
-          <UserProfile user={this.state.user} logout={this.logout} />
+          <Row>
+            <Col s={4}>
+              <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
+            </Col>
+            <Col s={8}>
+              <Campaigns user={this.state.user} getCampaign={this.getCampaign} />
+            </Col>
+          </Row>
         </div>
       );
     } else {
