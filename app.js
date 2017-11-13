@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mern-local-auth');
+mongoose.connect('mongodb://localhost/danddy-tracker');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -25,9 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  // before every route, attach the flash messages and current user to res.locals
-  res.locals.currentUser = req.user;
-  next();
+    // before every route, attach the flash messages and current user to res.locals
+    res.locals.currentUser = req.user;
+    next();
 });
 
 app.use('/', index);
