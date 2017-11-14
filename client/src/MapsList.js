@@ -21,7 +21,15 @@ class MapsList extends Component{
     }
 
     componentDidMount(){
-
+        var campaignId = this.props.campaign._id;
+        console.log(campaignId)
+        axios.post('/users/maps', {
+            campaign: campaignId,
+            user: this.props.user
+        }).then(result => {
+            this.setState({ maps: result.data })
+            console.log(this.state.maps)
+        })
     }
     titleSubmit(e){
         var set = e.target.value;

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { User, Campaign, Character } = require('../models/user');
+var { User, Campaign, Character, Map, Note } = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -57,9 +57,14 @@ router.post('/chars/new', function(req, res, next) {
         }
     });
 });
-
+router.post('/maps', function(req, res, next) {
+    Map.find({ campaign: req.body.campaign }, function(err, map) {
+        if (err) return console.log(err)
+        res.send(map)
+    })
+})
 router.post('/maps/new', function(req, res, next) {
-    Maps.create({
+    Map.create({
         title: req.body.title,
         image: req.body.image,
         campaign: req.body.campaign
