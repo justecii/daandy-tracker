@@ -33,7 +33,6 @@ class CharacterList extends Component {
             user: this.props.user
         }).then(result => {
             this.setState({characters: result.data})
-            console.log(this.state.characters)
         })
     }
     nameSubmit(e){
@@ -100,7 +99,7 @@ class CharacterList extends Component {
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
             <Row>
-                <li key={index}>{item.title}</li>
+                <li key={index}>{item.name}</li>
                 <Button value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
             </Row>
         ) 
@@ -108,7 +107,9 @@ class CharacterList extends Component {
     if (this.state.viewChar === true){
         return(
             <div>
-                Character will go here
+                <h2>{this.state.charInfo.name}</h2>
+                <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
+                <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
             </div>
         )
     } else {

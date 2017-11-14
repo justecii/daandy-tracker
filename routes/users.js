@@ -44,7 +44,7 @@ router.post('/chars', function(req, res, next) {
 });
 //gets individual character and sends back to be rendered
 router.post('/chars/:id', function(req, res, next) {
-    Map.find({ _id: req.body.id }, function(err, character) {
+    Character.find({ _id: req.body.id }, function(err, character) {
         if (err) return console.log(err)
         res.send(character)
     })
