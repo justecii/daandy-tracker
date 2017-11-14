@@ -53,7 +53,7 @@ class NotesList extends Component{
     }
     render(){
         let mappedNotes = this.state.notes.map((item, index) => (
-            <li key={index}>{item.title}</li>
+            <li key={index}><a href="/note/:id">{item.title}</a></li>
             )
         )
         return(

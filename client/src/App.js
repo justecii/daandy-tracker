@@ -82,12 +82,14 @@ class App extends Component {
       if (this.state.isCampaign === true) {
         return (
           <div>
+            <h1>DandDy Tracker</h1>
             <CurrentCamp user={this.state.user} campaign={this.state.campaign}/>
           </div>
         )
       } else {
         return (
           <div className='App'>
+            <h1>DandDy Tracker</h1>
             <Row>
               <Col s={4}>
                 <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
@@ -101,7 +103,7 @@ class App extends Component {
       } else {
         return (
           <div className='App'>
-
+            <h1>DandDy Tracker</h1>
             <div className='SignupBox'>
               <Signup lift={this.liftTokenToState} />
             </div>
