@@ -81,8 +81,13 @@ router.post('/notes', function(req, res, next) {
         res.send(note)
     })
 })
-router.get('/note/:id', function(req, res, next) {
-    console.log("This was requested")
+router.post('/note/:id', function(req, res, next) {
+    console.log("This note was requested")
+    console.log(req.body.id)
+    Note.find({ _id: req.body.id }, function(err, note) {
+        if (err) return console.log(err)
+        res.send(note)
+    })
 })
 router.post('/notes/new', function(req, res, next) {
     Note.create({

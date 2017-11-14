@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Input, Button } from 'react-materialize';
+import { Input, Button, Row } from 'react-materialize';
 import axios from 'axios';
 
 class MapsList extends Component{
@@ -8,7 +8,8 @@ class MapsList extends Component{
         this.state={
             maps: [],
             title: '',
-            image: ''
+            image: '',
+            viewMap: false
         }
         this.componentDidMount =this.componentDidMount.bind(this)
     }
@@ -44,12 +45,32 @@ class MapsList extends Component{
             campaign: this.props.campaign._id
         })
     }
+    viewMap(e) {
+        axios.post('/users/map/:id', {
+            id: e.target.value
+        }).then(result => {
+            console.log(result)
+            this.setState({
+                viewMap: true
+            })
+        })
+    }
 
     render(){
         let mappedMaps = this.state.maps.map((item, index) => (
-            <li key={index}>{item.title}</li>
+            <Row>
+                <li key={index}>{item.title}</li>
+                <Button value={item._id} onClick={(e) => this.viewMap(e)}>View Note</Button>
+            </Row>
         ) 
     )
+    if (this.state.viewMap === true){
+        return(
+            <div>
+                Map will be here
+            </div>
+        )
+    } else {
         return(
             <div>
                 {mappedMaps}
@@ -60,6 +81,7 @@ class MapsList extends Component{
                 </form>
             </div>
         )
+    }
     }
 }
 
