@@ -39,8 +39,8 @@ router.post('/chars', function(req, res, next) {
     Character.find({ campaign: req.body.campaign }, function(err, character) {
         if (err) return console.log(err);
         res.send(character)
-    })
-})
+    });
+});
 
 router.post('/chars/new', function(req, res, next) {
     Character.create({
@@ -56,6 +56,18 @@ router.post('/chars/new', function(req, res, next) {
             res.send(err.message)
         }
     });
-})
+});
+
+router.post('/maps/new', function(req, res, next) {
+    Maps.create({
+        title: req.body.title,
+        image: req.body.image,
+        campaign: req.body.campaign
+    }, function(err, result) {
+        if (err) {
+            res.send(err.message)
+        }
+    });
+});
 
 module.exports = router;

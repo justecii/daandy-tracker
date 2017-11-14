@@ -85,9 +85,13 @@ class CharacterList extends Component {
         })
     }
     render() {
+        let mappedChars = this.state.characters.map((item, index) => (
+            <li key={index}>{item.name}</li>
+        ) 
+    )
         return (
             <div>
-
+                {mappedChars}
                 <form>
                     <Input label="Name" onInput={(e) => this.nameSubmit(e)} />
                     <Input label="Race" onInput={(e) => this.raceSubmit(e)} />
