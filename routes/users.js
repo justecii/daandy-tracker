@@ -34,6 +34,7 @@ router.post('/campaign/new', function(req, res, next) {
         }
     });
 })
+
 router.post('/chars', function(req, res, next) {
     console.log("this is the campaign Id " + req.body.campaign)
     Character.find({ campaign: req.body.campaign }, function(err, character) {
@@ -41,7 +42,13 @@ router.post('/chars', function(req, res, next) {
         res.send(character)
     });
 });
-
+//gets individual character and sends back to be rendered
+router.post('/chars/:id', function(req, res, next) {
+    Map.find({ _id: req.body.id }, function(err, character) {
+        if (err) return console.log(err)
+        res.send(character)
+    })
+})
 router.post('/chars/new', function(req, res, next) {
     Character.create({
         name: req.body.name,
@@ -74,21 +81,28 @@ router.post('/maps/new', function(req, res, next) {
         }
     });
 });
+//gets individual map and sends back to be rendered
+router.post('/map/:id', function(req, res, next) {
+    Map.find({ _id: req.body.id }, function(err, maps) {
+        if (err) return console.log(err)
+        res.send(maps)
+    })
+})
 
 router.post('/notes', function(req, res, next) {
-    Note.find({ campaign: req.body.campaign }, function(err, note) {
-        if (err) return console.log(err)
-        res.send(note)
+        Note.find({ campaign: req.body.campaign }, function(err, note) {
+            if (err) return console.log(err)
+            res.send(note)
+        })
     })
-})
+    //gets individual note and sends it back to be rendered
 router.post('/note/:id', function(req, res, next) {
-    console.log("This note was requested")
-    console.log(req.body.id)
-    Note.find({ _id: req.body.id }, function(err, note) {
-        if (err) return console.log(err)
-        res.send(note)
+        Note.find({ _id: req.body.id }, function(err, note) {
+            if (err) return console.log(err)
+            res.send(note)
+        })
     })
-})
+    //creates a new note to the notes collection
 router.post('/notes/new', function(req, res, next) {
     Note.create({
         title: req.body.title,

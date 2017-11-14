@@ -22,7 +22,6 @@ class MapsList extends Component{
             user: this.props.user
         }).then(result => {
             this.setState({ maps: result.data })
-            console.log(this.state.maps)
         })
     }
     titleSubmit(e){
@@ -49,8 +48,9 @@ class MapsList extends Component{
         axios.post('/users/map/:id', {
             id: e.target.value
         }).then(result => {
-            console.log(result)
+            console.log(result.data[0])
             this.setState({
+                mapInfo: result.data[0],
                 viewMap: true
             })
         })
@@ -60,14 +60,15 @@ class MapsList extends Component{
         let mappedMaps = this.state.maps.map((item, index) => (
             <Row>
                 <li key={index}>{item.title}</li>
-                <Button value={item._id} onClick={(e) => this.viewMap(e)}>View Note</Button>
+                <Button value={item._id} onClick={(e) => this.viewMap(e)}>View Map</Button>
             </Row>
         ) 
     )
     if (this.state.viewMap === true){
         return(
             <div>
-                Map will be here
+                <h2>{this.state.mapInfo.title}</h2>
+                <img className="fitImage" src={this.state.mapInfo.image} alt="Maps rendered" />
             </div>
         )
     } else {

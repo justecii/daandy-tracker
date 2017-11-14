@@ -44,6 +44,10 @@ body {
     margin: 20px;
 }
 
+.fitImage {
+    height: 50%;
+}
+
 h1 {
     font-family: 'Metal Mania', cursive;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Input, Button} from 'react-materialize';
+import {Input, Button, Row} from 'react-materialize';
 import {
     BrowserRouter as Router,
     Route,
@@ -19,7 +19,8 @@ class CharacterList extends Component {
             charClass: '',
             align: '',
             level: '',
-            characters: []
+            characters: [],
+            viewChar: false
         }
         this.componentDidMount = this.componentDidMount.bind(this)
     }
@@ -84,11 +85,33 @@ class CharacterList extends Component {
             campaign: this.props.campaign._id
         })
     }
+
+    viewChar(e) {
+        axios.post('/users/chars/:id', {
+            id: e.target.value
+        }).then(result => {
+            console.log(result.data[0])
+            this.setState({
+                charInfo: result.data[0],
+                viewChar: true
+            })
+        })
+    }
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
-            <li key={index}>{item.name}</li>
+            <Row>
+                <li key={index}>{item.title}</li>
+                <Button value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
+            </Row>
         ) 
     )
+    if (this.state.viewChar === true){
+        return(
+            <div>
+                Character will go here
+            </div>
+        )
+    } else {
         return (
             <div>
                 {mappedChars}
@@ -103,6 +126,7 @@ class CharacterList extends Component {
                 </form>
             </div>
         )
+    }
     }
 }
 
