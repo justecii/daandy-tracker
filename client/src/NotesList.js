@@ -29,6 +29,7 @@ class NotesList extends Component{
             user: this.props.user
         }).then(result => {
             this.setState({ notes: result.data }) 
+            console.log(this.state.notes)
         })
     }
     titleSubmit(e) {
