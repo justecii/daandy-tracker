@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 import { Input, Button } from 'react-materialize';
 import axios from 'axios';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter
-} from 'react-router-dom';
 
 class MapsList extends Component{
     constructor(props){
@@ -53,8 +46,13 @@ class MapsList extends Component{
     }
 
     render(){
+        let mappedMaps = this.state.maps.map((item, index) => (
+            <li key={index}>{item.title}</li>
+        ) 
+    )
         return(
             <div>
+                {mappedMaps}
                 <form>
                     <Input label='Title' onInput={(e) => this.titleSubmit(e)}/>
                     <Input label='Upload Image' onInput={(e) => this.imageSubmit(e)} />

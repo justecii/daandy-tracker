@@ -75,4 +75,22 @@ router.post('/maps/new', function(req, res, next) {
     });
 });
 
+router.post('/notes', function(req, res, next) {
+    Note.find({ campaign: req.body.campaign }, function(err, note) {
+        if (err) return console.log(err)
+        res.send(note)
+    })
+})
+router.post('/notes/new', function(req, res, next) {
+    Note.create({
+        title: req.body.title,
+        content: req.body.content,
+        campaign: req.body.campaign
+    }, function(err, result) {
+        if (err) {
+            res.send(err.message)
+        }
+    });
+});
+
 module.exports = router;
