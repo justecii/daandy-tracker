@@ -34,8 +34,8 @@ router.post('/campaign/new', function(req, res, next) {
         }
     });
 })
-router.get('/chars', function(req, res, next) {
-    console.log(req.body.campaign)
+router.post('/chars', function(req, res, next) {
+    console.log("this is the campaign Id " + req.body.campaign)
     Character.find({ campaign: req.body.campaign }, function(err, character) {
         if (err) return console.log(err);
         res.send(character)

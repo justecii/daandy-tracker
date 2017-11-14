@@ -24,8 +24,12 @@ class CharacterList extends Component {
         this.componentDidMount = this.componentDidMount.bind(this)
     }
     componentDidMount(){
-        axios.get('/users/chars', {
-            campaign: this.props.campaign._id
+        var campaignId = this.props.campaign._id;
+        console.log(this.props)
+        console.log(campaignId)
+        axios.post('/users/chars', {
+            campaign: campaignId,
+            user: this.props.user
         }).then(result => {
             this.setState({characters: result.data})
             console.log(this.state.characters)
@@ -83,8 +87,6 @@ class CharacterList extends Component {
     render() {
         return (
             <div>
-                Test Characters
-                {this.props.campaign.characters}
 
                 <form>
                     <Input label="Name" onInput={(e) => this.nameSubmit(e)} />
