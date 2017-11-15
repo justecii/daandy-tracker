@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Input, Button, Row, option} from 'react-materialize';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
 
 class NewCampaign extends Component {
     constructor(props){
@@ -50,12 +53,11 @@ class NewCampaign extends Component {
                 </div>
                 <form>
                     <Input label="Title" onInput={ (e) => this.onSubmit(e)} />
-                    <select>
-                        <option value="grapefruit">Grapefruit</option>
-                        <option value="lime">Lime</option>
-                        <option selected value="coconut">Coconut</option>
-                        <option value="mango">Mango</option>
-                    </select>
+                    <Input s={12} type='select' label="Materialize Select" defaultValue='2'>
+                        <option value='1'>Option 1</option>
+                        <option value='2'>Option 2</option>
+                        <option value='3'>Option 3</option>
+                    </Input>
                     <Button onClick={ (e) => this.onClick(e) }>Start Campaign</Button>
                 </form>
             </div>
