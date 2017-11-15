@@ -22,7 +22,7 @@ router.post('/campaign', function(req, res, next) {
 //get active users for a current campaign - first searches for the campaign, then takes user values and searches users
 router.post('/active', function(req, res, next) {
     console.log("this is the campaign Id " + req.body.campaign)
-    Campaign.find({ id: req.body.campaign }, function(err, campaign) {
+    Campaign.find({ _id: req.body.campaign }, function(err, campaign) {
         if (err) return console.log(err);
         res.send(campaign)
     });
@@ -39,10 +39,15 @@ router.post('/campaign/new', function(req, res, next) {
     Campaign.create({
         users: req.body.user.id,
         title: req.body.title
-    }, function(err, user) {
+    }, function(err, result) {
         if (err) {
             res.send(err.message)
         }
+        console.log("The campaign id is" + result._id)
+        User.update({ _id: req.body.user.id }, { $push: { campaigns: result._id } }, function(err, user) {
+            if (err) console.log(err);
+            console.log("results" + user._id)
+        })
     });
 })
 

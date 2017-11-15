@@ -30,7 +30,7 @@ class UserList extends Component {
         axios.post('/users/active', {
             campaign: campaignId
         }).then(result => {
-            console.log(result.data)
+            console.log(result.data[0].users)
             // this.setState({ campUsers: result.data })
         })
         console.log(this.props.campaign)
