@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link, 
+  NavLink
 } from 'react-router-dom';
 import './App.css';
 import Signup from './Signup';
@@ -10,9 +11,10 @@ import Login from './Login';
 import Logout from './Logout';
 import UserProfile from './UserProfile';
 import Campaigns from './Campaigns';
-import CurrentCamp from './CurrentCamp'
+import CurrentCamp from './CurrentCamp';
+import Home from './Home'
 import axios from 'axios';
-import {Row, Col} from 'react-materialize';
+import {Row, Col, Navbar, NavItem } from 'react-materialize';
 import 'react-select/dist/react-select.css';
 
 class App extends Component {
@@ -25,7 +27,7 @@ class App extends Component {
       isCampaign: false
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
-    this.logout = this.logout.bind(this)
+    this.logOut = this.logOut.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.getCampaign = this.getCampaign.bind(this)
   }
@@ -34,9 +36,15 @@ class App extends Component {
     this.setState({token: data.token, user: data.user})
   }
 
-  logout() {
+  logOut(event) {
     localStorage.removeItem('mernToken')
-    this.setState({token: '', user: {}})
+    this.setState({
+      token: '',
+      user: {},
+      campaign: {},
+      isCampaign: false
+    })
+    console.log("CLICKED LOGOUT")
   }
 
   componentDidMount() {
@@ -76,44 +84,70 @@ class App extends Component {
       // this.setState({toView: result})
     })
   }
+  //resets screen to home page
+  returnHome(e){
+    this.setState({isCampaign: false})
+  }
+  profileView(e){
+    console.log("You clicked the profile page")
+    this.setState({isCampaign: false})
+  }
 
   render() {
     var theUser = this.state.user
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       if (this.state.isCampaign === true) {
         return (
-          <div>
-            <h1>DandDy Tracker</h1>
-            <CurrentCamp user={this.state.user} campaign={this.state.campaign}/>
-          </div>
+          <Router>
+            <div className='App'>
+              <Navbar brand="DandD" right className="brand-logo">
+                <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
+                <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+              </Navbar>
+              <Route path='/profile' render={(props) => (
+                <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
+              )} />
+              <Route exact path='/' component={Home} />
+              WHAT ROUTE
+              <CurrentCamp user={this.state.user} campaign={this.state.campaign}/>
+            </div>
+          </Router>
         )
       } else {
         return (
-          <div className='App'>
-            <h1>DandDy Tracker</h1>
-            <Row>
-              <Col s={4}>
-                <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
-              </Col>
-              <Col s={8}>
-                <Campaigns user={this.state.user} getCampaign={this.getCampaign} />
-              </Col>
-            </Row>
-          </div>
+          <Router>
+            <div className='App'>
+              <Navbar brand="DandD" right className="brand-logo">
+                <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
+                <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+              </Navbar>
+              <Route path='/profile' render={(props) => (
+                <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
+              )} />
+              <Route exact path='/' component={Home} />
+              <Row>
+                  <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
+              </Row>
+            </div>
+          </Router>
         )};
       } else {
         return (
-          <div className='App'>
-            <h1>DandDy Tracker</h1>
-            <div className='SignupBox'>
-              <Signup lift={this.liftTokenToState} />
+          <Router>
+            <div className='App'>
+              <Navbar brand="DandD" right className="brand-logo">
+                <li><NavLink to='/login'>Login</NavLink></li>
+                <li><NavLink to='/signup'>Sign Up</NavLink></li>
+              </Navbar>
+              <Route path='/login' render={(props) => (
+                <Login {...props} lift={this.liftTokenToState} />
+              )} />
+              <Route path='/signup' render={(props) => (
+                <Signup {...props} lift={this.liftTokenToState} />
+              )} />
+              <Home />
             </div>
-
-            <div className='LoginBox'>
-              <Login lift={this.liftTokenToState} />
-            </div>
-
-          </div>
+          </Router>
       );
     }
   }

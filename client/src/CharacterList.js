@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Input, Button, Row} from 'react-materialize';
+import {Input, Button, Row, Col} from 'react-materialize';
 import {
     BrowserRouter as Router,
     Route,
@@ -112,21 +112,26 @@ class CharacterList extends Component {
                 <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
                 <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
                 <img className="fitImage" src={this.state.charInfo.image} alt="Character Image"/>
+                <Button>Update Character</Button>
             </div>
         )
     } else {
         return (
             <div>
-                {mappedChars}
-                <form>
-                    <Input label="Name" onInput={(e) => this.nameSubmit(e)} />
-                    <Input label="Race" onInput={(e) => this.raceSubmit(e)} />
-                    <Input label="Class" onInput={(e) => this.classSubmit(e)} />
-                    <Input label="Alignment" onInput={(e) => this.alignSubmit(e)} />
-                    <Input label="Level" onInput={(e) => this.levelSubmit(e)} />
-                    <Input label="Image URL" onInput={(e) => this.imageSubmit(e)} />
-                    <Button onClick={(e) => this.onClick(e)}>Upload Character</Button>
-                </form>
+                <Row>
+                    <Col s={12} m={4}>{mappedChars}</Col>
+                    <Col s={12} m={8}>
+                    <form>
+                        <Input label="Name" onInput={(e) => this.nameSubmit(e)} />
+                        <Input label="Race" onInput={(e) => this.raceSubmit(e)} />
+                        <Input label="Class" onInput={(e) => this.classSubmit(e)} />
+                        <Input label="Alignment" onInput={(e) => this.alignSubmit(e)} />
+                        <Input label="Level" onInput={(e) => this.levelSubmit(e)} />
+                        <Input label="Image URL" onInput={(e) => this.imageSubmit(e)} />
+                        <Button onClick={(e) => this.onClick(e)}>Upload Character</Button>
+                    </form>
+                    </Col>
+                </Row>
             </div>
         )
     }

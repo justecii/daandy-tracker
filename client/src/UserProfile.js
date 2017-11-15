@@ -24,18 +24,22 @@ class UserProfile extends Component {
     return (
       <div className='UserProfileBox'>
         <p>Hello, {this.props.user.name}!</p>
-        <a onClick={this.props.logout}>Logout</a>
         <Router>
           <div>
             <ul>
               <li>{this.props.user.name}</li>
-              <Link to='/profile'>Profile</Link>
-              <Link to='/campaigns/new'>New Campaign</Link>
+              <li><Link to='/profile'>Profile</Link></li>
+              <li><Link to='/campaigns/new'>New Campaign</Link></li>
+              <li><Link to='/campaigns'>My Campaigns</Link></li>
             </ul>
             <Route path='/profile' component={Profile} />
             <Route path='/campaigns/new' render={(props) => (
               <NewCampaign {...props} user={this.state.user} />
             )} />
+            <Route path='/campaigns' render={(props) => (
+              <Campaigns {...props} user={this.state.user} getCampaign={this.props.getCampaign}/>
+            )} />
+           
           </div>
           
         </Router>

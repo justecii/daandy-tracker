@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Input, Button, Row } from 'react-materialize';
+import { Input, Button, Row , Col} from 'react-materialize';
 import axios from 'axios';
 
 class MapsList extends Component{
@@ -74,12 +74,18 @@ class MapsList extends Component{
     } else {
         return(
             <div>
-                {mappedMaps}
-                <form>
-                    <Input label='Title' onInput={(e) => this.titleSubmit(e)}/>
-                    <Input label='Upload Image' onInput={(e) => this.imageSubmit(e)} />
-                    <Button onClick={(e) => this.onClick(e)}>New Map</Button>
-                </form>
+                <Row>
+                    <Col s={12} m={4}>
+                        {mappedMaps}
+                    </Col>
+                    <Col s={12} m={8}>
+                        <form>
+                            <Input label='Title' onInput={(e) => this.titleSubmit(e)}/>
+                            <Input label='Upload Image' onInput={(e) => this.imageSubmit(e)} />
+                            <Button onClick={(e) => this.onClick(e)}>New Map</Button>
+                        </form>
+                    </Col>
+                </Row>
             </div>
         )
     }

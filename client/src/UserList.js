@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import {Button} from 'react-materialize'
+import {Button, Row, Col} from 'react-materialize'
 import 'react-select/dist/react-select.css';
 // import { Input, Button, Row } from 'react-materialize';
 
@@ -59,26 +59,28 @@ class UserList extends Component {
         ))
         return(
             <div>
-                <div>
-                    {currentUsers}
-                </div>
-                <div>
-                    <Select
-                        id="state-select"
-                        ref="stateSelect"
-                        autoFocus
-                        options={mappedOptions}
-                        simpleValue
-                        clearable={this.state.clearable}
-                        name="selected-state"
-                        disabled={this.state.disabled}
-                        value={this.state.selectValue}
-                        onChange={(e) => this.updateValue(e)}
-                        rtl={this.state.rtl}
-                        searchable={this.state.searchable}
-                    />
-                    <Button onClick={(e) => this.onClick(e)}>Add User</Button>
-                </div>
+                <Row>
+                    <Col s={12} m={4}>
+                        {currentUsers}
+                    </Col>
+                    <Col s={12} m={8}>
+                        <Select
+                            id="state-select"
+                            ref="stateSelect"
+                            autoFocus
+                            options={mappedOptions}
+                            simpleValue
+                            clearable={this.state.clearable}
+                            name="selected-state"
+                            disabled={this.state.disabled}
+                            value={this.state.selectValue}
+                            onChange={(e) => this.updateValue(e)}
+                            rtl={this.state.rtl}
+                            searchable={this.state.searchable}
+                        />
+                        <Button onClick={(e) => this.onClick(e)}>Add User</Button>
+                    </Col>
+                </Row>
                 
             </div>
         )

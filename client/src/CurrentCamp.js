@@ -27,7 +27,7 @@ class CurrentCamp extends Component {
         return(
             <div>
                 <Row>
-                    {this.props.campaign.title} featuring {this.props.campaign.users}
+                    <h2>{this.props.campaign.title}</h2>
                 </Row>
                 <Row>
                     <Button onClick={(e) => this.onClick(e)}>Click for Props</Button>
