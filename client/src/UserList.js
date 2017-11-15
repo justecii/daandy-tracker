@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import {Button} from 'react-materialize'
 import 'react-select/dist/react-select.css';
 // import { Input, Button, Row } from 'react-materialize';
 
@@ -23,17 +24,14 @@ class UserList extends Component {
         axios.get('/users')
             .then(result => {
                 this.setState({ userList: result.data })
-                console.log(this.state.userList)
-                console.log(this.state.userList[0].email)
             })
         var campaignId = this.props.campaign._id;
         axios.post('/users/active', {
             campaign: campaignId
         }).then(result => {
-            console.log(result.data[0].users)
+            console.log(result.data)
             // this.setState({ campUsers: result.data })
         })
-        console.log(this.props.campaign)
     }
 
     //props for user dropdown
@@ -41,7 +39,14 @@ class UserList extends Component {
         this.setState({
             selectValue: newValue,
         })
-        console.log(this.state.selectValue)
+    }
+    //add user to campaign list
+    onClick(e){
+        e.preventDefault();
+        axios.post('/users/campaign/user', {
+            user: this.state.selectValue,
+            campaign: this.props.campaign._id
+        })
     }
     render(){
         let mappedOptions = this.state.userList.map((item, index) => (
@@ -63,6 +68,7 @@ class UserList extends Component {
                     rtl={this.state.rtl}
                     searchable={this.state.searchable}
                 />
+                <Button onClick={(e) => this.onClick(e)}>Add User</Button>
             </div>
         )
     }
