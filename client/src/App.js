@@ -13,6 +13,7 @@ import Campaigns from './Campaigns';
 import CurrentCamp from './CurrentCamp'
 import axios from 'axios';
 import {Row, Col} from 'react-materialize';
+import 'react-select/dist/react-select.css';
 
 class App extends Component {
   constructor(props) {

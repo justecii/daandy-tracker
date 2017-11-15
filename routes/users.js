@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         res.send(users)
     })
 });
-
+//get all of a users campaigns
 router.post('/campaign', function(req, res, next) {
     console.log(req.body.user)
     console.log(req.body)
@@ -19,9 +19,16 @@ router.post('/campaign', function(req, res, next) {
         res.send(campaigns)
     });
 });
+//get active users for a current campaign - first searches for the campaign, then takes user values and searches users
+router.post('/active', function(req, res, next) {
+    console.log("this is the campaign Id " + req.body.campaign)
+    Campaign.find({ id: req.body.campaign }, function(err, campaign) {
+        if (err) return console.log(err);
+        res.send(campaign)
+    });
+});
 
 router.post('/list', function(req, res, next) {
-    console.log("I am Here!")
     Campaign.find({ _id: req.body.id }, function(err, campaign) {
         if (err) return console.log(err);
         res.send(campaign)

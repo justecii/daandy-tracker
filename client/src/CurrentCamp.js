@@ -3,6 +3,7 @@ import {Row, Col, Button} from 'react-materialize';
 import CharacterList from './CharacterList';
 import MapsList from './MapsList';
 import NotesList from './NotesList';
+import UserList from './UserList';
 
 import {
     BrowserRouter as Router,
@@ -36,6 +37,7 @@ class CurrentCamp extends Component {
                                 <Link className="campaignList" to='/characters'>Characters</Link>
                                 <Link className="campaignList" to='/maps'>Maps</Link>
                                 <Link className="campaignList" to='/notes'>Notes</Link>
+                                <Link className='campaignList' to='/users'>Users</Link>
                             </ul>
                             <Route path='/characters' render={(props) => (
                                 <CharacterList {...props} user={this.props.user} campaign={this.props.campaign} />
@@ -45,6 +47,9 @@ class CurrentCamp extends Component {
                             )} />
                             <Route path='/notes' render={(props) => (
                                 <NotesList {...props} user={this.props.user} campaign={this.props.campaign}/>
+                            )} />
+                            <Route path='/users' render={(props) => (
+                                <UserList {...props} user={this.props.user} campaign={this.props.campaign} />
                             )} />
                         </div>
                     </Router>
