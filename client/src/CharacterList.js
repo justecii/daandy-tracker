@@ -75,12 +75,13 @@ class CharacterList extends Component {
         e.preventDefault();
         console.log(this.state)
         console.log(this.props.campaign._id)
-        axios.post('/users/chars/new', {
+        axios.post('/users/characters/add', {
             name: this.state.name,
             race: this.state.race,
             charClass: this.state.charClass,
             align: this.state.align,
             level: this.state.level,
+            image: this.state.image,
             campaign: this.props.campaign._id
         })
     }
@@ -110,6 +111,7 @@ class CharacterList extends Component {
                 <h2>{this.state.charInfo.name}</h2>
                 <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
                 <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
+                <img className="fitImage" src={this.state.charInfo.image} alt="Character Image"/>
             </div>
         )
     } else {

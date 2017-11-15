@@ -73,7 +73,8 @@ router.post('/chars/:id', function(req, res, next) {
         res.send(character)
     })
 })
-router.post('/chars/new', function(req, res, next) {
+router.post('/characters/add', function(req, res, next) {
+    console.log('CLICKED')
     Character.create({
         name: req.body.name,
         level: req.body.level,
@@ -86,6 +87,7 @@ router.post('/chars/new', function(req, res, next) {
         if (err) {
             res.send(err.message)
         }
+        console.log("THIS IS THE USER")
     });
 });
 router.post('/maps', function(req, res, next) {
