@@ -172,9 +172,6 @@ class App extends Component {
                 <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
               )} />
               <Route exact path='/' component={Home} />
-              <Row>
-                  <UserProfile user={this.state.user} logout={this.logout} getCampaign={this.getCampaign}/>
-              </Row>
             </div>
           </Router>
         )};

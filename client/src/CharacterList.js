@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddSkill from './AddSkill';
 import axios from 'axios';
 import {Input, Button, Row, Col} from 'react-materialize';
 import {
@@ -130,6 +131,7 @@ class CharacterList extends Component {
                         <Input label="Image URL" onInput={(e) => this.imageSubmit(e)} />
                         <Button onClick={(e) => this.onClick(e)}>Upload Character</Button>
                     </form>
+                    <AddSkill />
                     </Col>
                 </Row>
             </div>

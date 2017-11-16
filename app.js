@@ -13,6 +13,7 @@ mongoose.connect('mongodb://localhost/danddy-tracker');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var ability = require('./routes/ability');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/ability', ability);
 
 // catch 404 and forward to error handler - commented out
 // app.use(function(req, res, next) {
