@@ -14,8 +14,22 @@ import Campaigns from './Campaigns';
 import CurrentCamp from './CurrentCamp';
 import Home from './Home'
 import axios from 'axios';
-import {Row, Col, Navbar, NavItem } from 'react-materialize';
+import {Row, Col, Navbar, NavItem, Button } from 'react-materialize';
+import Modal from 'react-modal';
 import 'react-select/dist/react-select.css';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    padding: '25px',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgb(48, 0, 50)'
+  }
+};
 
 class App extends Component {
   constructor(props) {
@@ -24,12 +38,20 @@ class App extends Component {
       token: '',
       user: {},
       campaign: {},
+      loginIsOpen: false,
+      signUpIsOpen: false,
       isCampaign: false
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logOut = this.logOut.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
     this.getCampaign = this.getCampaign.bind(this)
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.openSignUp = this.openSignUp.bind(this);
+    this.afterOpenSignUp = this.afterOpenSignUp.bind(this);
+    this.closeSignUp = this.closeSignUp.bind(this);
   }
 
   liftTokenToState(data) {
@@ -92,6 +114,31 @@ class App extends Component {
     console.log("You clicked the profile page")
     this.setState({isCampaign: false})
   }
+  openModal() {
+    this.setState({ loginIsOpen: true });
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({ loginIsOpen: false });
+  }
+
+  openSignUp() {
+    this.setState({ signUpIsOpen: true });
+  }
+
+  afterOpenSignUp() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeSignUp() {
+    this.setState({ signUpIsOpen: false });
+  }
 
   render() {
     var theUser = this.state.user
@@ -136,15 +183,31 @@ class App extends Component {
           <Router>
             <div className='App'>
               <Navbar brand="DandD" right className="brand-logo">
-                <li><NavLink to='/login'>Login</NavLink></li>
-                <li><NavLink to='/signup'>Sign Up</NavLink></li>
+                <li ><a onClick={this.openModal}>Login</a></li>
+                <li ><a onClick={this.openSignUp}>Sign Up</a></li>
               </Navbar>
-              <Route path='/login' render={(props) => (
-                <Login {...props} lift={this.liftTokenToState} />
-              )} />
-              <Route path='/signup' render={(props) => (
-                <Signup {...props} lift={this.liftTokenToState} />
-              )} />
+              <Modal
+                isOpen={this.state.loginIsOpen}
+                onAfterOpen={this.afterOpenModal}
+                onRequestClose={this.closeModal}
+                style={customStyles}
+                contentLabel="Login Modal"
+              >
+                <h2 ref={subtitle => this.subtitle = subtitle}>Login</h2>
+                <Login lift={this.liftTokenToState}/>
+                <Button className="fltRight" onClick={this.closeModal}>Cancel</Button>
+              </Modal>
+              <Modal
+                isOpen={this.state.signUpIsOpen}
+                onAfterOpen={this.afterOpenSignUp}
+                onRequestClose={this.closeSignUp}
+                style={customStyles}
+                contentLabel="Sign Up Modal"
+              >
+                <h2 ref={subtitle => this.subtitle = subtitle}>Sign Up</h2>
+                <Signup lift={this.liftTokenToState} />
+                <Button className="inline" onClick={this.closeSignUp}>Cancel</Button>
+              </Modal>
               <Home />
             </div>
           </Router>

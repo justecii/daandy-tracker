@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Button, Input} from 'react-materialize';
 
 class Login extends Component {
   constructor(props) {
@@ -34,9 +35,9 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br />
-        Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} /><br />
-        <input type='submit' value='Log in' />
+        <Input label="email" type='text' value={this.state.email} onChange={this.handleEmailChange} /><br />
+        <Input type="password" label="password" value={this.state.password} onChange={this.handlePasswordChange} /><br />
+        <Button className="fltLeft" type='submit'>Login</Button>
       </form>
     );
   }

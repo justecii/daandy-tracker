@@ -1,5 +1,5 @@
     .purpleShade {
-        color: #300032;
+        color: rgb(48, 0, 50);
     }
     
     .blackShade {
@@ -15,7 +15,7 @@
     }
     
     nav {
-        background-color: #300032;
+        background-color: rgb(48, 0, 50);
     }
     
     nav .brand-logo {
@@ -62,12 +62,26 @@
         height: 50%;
     }
     
-    h1 {
+    h1,
+    h2 {
         font-family: 'Metal Mania', cursive;
+    }
+    
+    .fltLeft {
+        float: left;
+        margin-right: 5%;
+    }
+    
+    .fltRight {
+        float: right;
     }
     /* Button Styles */
     
     .btn {
+        background-color: #06000a;
+    }
+    
+    button {
         background-color: #06000a;
     }
     
@@ -107,4 +121,9 @@
     
     .welcome {
         margin-top: 0px;
+    }
+    
+    h2 {
+        margin-top: 1%;
+        text-align: center;
     }
