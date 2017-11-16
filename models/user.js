@@ -85,7 +85,7 @@ var characterSchema = new mongoose.Schema({
     alignment: String,
     level: Number,
     campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' },
-    spells: [{ type: Schema.ObjectId, ref: 'Spell' }]
+    abilities: [{ type: Schema.ObjectId, ref: 'Ability' }]
 });
 
 var mapSchema = new mongoose.Schema({
@@ -116,8 +116,11 @@ var noteSchema = new mongoose.Schema({
     campaign: { type: Schema.Types.ObjectId, ref: 'Campaign' }
 })
 
-var spellSchema = new mongoose.Schema({
+var abilitySchema = new mongoose.Schema({
     name: {
+        type: String
+    },
+    abilityType: {
         type: String
     },
     url: {
@@ -131,14 +134,14 @@ var Campaign = mongoose.model('Campaign', campaignSchema);
 var Character = mongoose.model('Character', characterSchema);
 var Map = mongoose.model('Map', mapSchema);
 var Note = mongoose.model('Note', noteSchema);
-var Spell = mongoose.model('Spell', spellSchema);
+var Ability = mongoose.model('Ability', abilitySchema);
 
-//making other schemas 
 
 module.exports = {
     User: User,
     Campaign: Campaign,
     Character: Character,
     Map: Map,
-    Note: Note
+    Note: Note,
+    Ability: Ability
 };

@@ -115,7 +115,7 @@ class CharacterList extends Component {
                 <img className="fitImage" src={this.state.charInfo.image} alt="Character Image"/>
                 <Button>Update Character</Button>
                 <br/>
-                <AddSkill />
+                <AddSkill char={this.state.charInfo}/>
             </div>
         )
     } else {

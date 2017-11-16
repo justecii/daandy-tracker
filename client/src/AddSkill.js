@@ -12,6 +12,7 @@ class AddSkill extends Component {
             spellDesc: [],
             spellClass: [],
             spellUrl: [],
+            type: '',
             disabled: false,
             searchable: this.props.searchable,
             selectValue: '',
@@ -26,7 +27,7 @@ class AddSkill extends Component {
             this.setState({
                 spellList: result.data.results
             })
-            console.log(this.state.spellList)
+            console.log(this.props.char)
         })
     }
 
@@ -49,8 +50,9 @@ class AddSkill extends Component {
         e.preventDefault();
         axios.post('/ability/spell/add', {
             spellId: this.state.spellUrl,
-            name: this.state.spellName
-
+            name: this.state.spellName,
+            ability: this.state.type,
+            character: this.props.char._id
         })
     }
     //props for spells dropdown

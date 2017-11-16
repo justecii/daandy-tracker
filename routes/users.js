@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { User, Campaign, Character, Map, Note } = require('../models/user');
+var { User, Campaign, Character, Map, Note, Ability } = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

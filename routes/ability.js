@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var { User, Campaign, Character, Map, Note } = require('../models/user');
+var { User, Campaign, Character, Map, Note, Ability } = require('../models/user');
 
 
 router.post("/spells", function(req, res, next) {
@@ -17,7 +17,6 @@ router.post("/spells", function(req, res, next) {
 
 router.post('/spell/search', function(req, res, next) {
     var spell = req.body.search;
-    console.log("THIS WAS CLICKED")
     request(spell, function(error, response, body) {
         if (error) {
             return res.send(err);
@@ -26,5 +25,23 @@ router.post('/spell/search', function(req, res, next) {
         res.send(data)
     });
 });
+
+router.post('/spell/add', function(req, res, next) {
+    Ability.create({
+        name: req.body.name,
+        abilityType: req.body.ability,
+        url: req.body.spellId,
+        chararacter: req.body.chararacter
+    }, function(err, result) {
+        if (err) {
+            res.send(err.message)
+        }
+        console.log("The character id is" + result._id)
+        Character.update({ _id: req.body.chararacter }, { $push: { abilities: result._id } }, function(err, user) {
+            if (err) console.log(err);
+        })
+    })
+})
+
 
 module.exports = router;
