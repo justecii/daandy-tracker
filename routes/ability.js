@@ -27,6 +27,7 @@ router.post('/spell/search', function(req, res, next) {
 });
 
 router.post('/spell/add', function(req, res, next) {
+    console.log('Character is ' + req.body.chararacter)
     Ability.create({
         name: req.body.name,
         abilityType: req.body.ability,
@@ -36,7 +37,7 @@ router.post('/spell/add', function(req, res, next) {
         if (err) {
             res.send(err.message)
         }
-        console.log("The character id is" + result._id)
+        console.log("The spell id is" + result._id)
         Character.update({ _id: req.body.chararacter }, { $push: { abilities: result._id } }, function(err, user) {
             if (err) console.log(err);
         })
