@@ -16,6 +16,7 @@ class AddSkill extends Component {
         })
     }
     onClick(e){
+        e.preventDefault();
         axios.post('/ability/search', {
             search: this.state.spell
         }).then(result =>{
@@ -27,8 +28,8 @@ class AddSkill extends Component {
             <div>
                 Skills will be here
                 <form>
-                    <Input label='Search Spells' onInput={this.searchSpells} />
-                    <Button onClick={this.onClick}>Submit</Button>
+                    <Input label='Search Spells' onInput={(e) =>this.searchSpells(e)} />
+                    <Button onClick={(e) =>this.onClick(e)}>Submit</Button>
                 </form>
             </div>
         )

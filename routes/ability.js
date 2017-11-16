@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var { User, Campaign, Character, Map, Note } = require('../models/user');
 
 
