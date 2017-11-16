@@ -16,7 +16,7 @@ class UserList extends Component {
             searchable: this.props.searchable,
             selectValue: '',
             clearable: true,
-            rtl: false,
+            rtl: false
         }
         this.componentDidMount = this.componentDidMount.bind(this)
     }

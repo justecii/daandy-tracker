@@ -114,6 +114,8 @@ class CharacterList extends Component {
                 <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
                 <img className="fitImage" src={this.state.charInfo.image} alt="Character Image"/>
                 <Button>Update Character</Button>
+                <br/>
+                <AddSkill />
             </div>
         )
     } else {
@@ -131,7 +133,6 @@ class CharacterList extends Component {
                         <Input label="Image URL" onInput={(e) => this.imageSubmit(e)} />
                         <Button onClick={(e) => this.onClick(e)}>Upload Character</Button>
                     </form>
-                    <AddSkill />
                     </Col>
                 </Row>
             </div>
