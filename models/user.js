@@ -126,7 +126,7 @@ var abilitySchema = new mongoose.Schema({
     url: {
         type: String
     },
-    character: { type: Schema.Types.ObjectId, ref: "Character" }
+    char: { type: Schema.Types.ObjectId, ref: "Character" }
 })
 
 var User = mongoose.model('User', userSchema);

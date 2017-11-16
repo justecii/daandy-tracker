@@ -32,7 +32,7 @@ router.post('/spell/add', function(req, res, next) {
         name: req.body.name,
         abilityType: req.body.ability,
         url: req.body.spellId,
-        chararacter: req.body.char
+        char: req.body.char
     }, function(err, result) {
         if (err) {
             res.send(err.message)

@@ -7,7 +7,9 @@ class Campaigns extends Component {
     constructor(props){
         super(props)
         this.state ={
-            campaigns: []
+            campaigns: [],
+            showCampaign: [],
+            show: true
         }
         this.componentDidMount = this.componentDidMount.bind(this)
     }
@@ -22,9 +24,17 @@ class Campaigns extends Component {
     }
     onClick(e){
         e.preventDefault();
-        var id = e.target.value;
-        this.props.getCampaign(id)
+        var camp = e.target.value;
+        axios.post('/users/list', {
+            id: camp
+        }).then(result => {
+            this.setState({
+                showCampaign: result.data[0],
+                show: false
+            })
+        })
     }
+    
 
     render(){
         let mappedCamp = this.state.campaigns.map((item, index) => (
@@ -33,11 +43,21 @@ class Campaigns extends Component {
             </Row>
         )
         );
-        return(
+        if (this.state.show){
+            return(
             <div>
                {mappedCamp}
             </div>
         )
+        } else {
+            console.log(this.props)
+            return(
+                <div>
+                    <CurrentCamp campaign={this.state.showCampaign}/>
+                </div>
+            )
+        }
+        
     }
 }
 

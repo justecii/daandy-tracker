@@ -3,7 +3,7 @@ import Logout from './Logout';
 import Profile from './Profile';
 import Campaigns from './Campaigns';
 import NewCampaign from './NewCampaign';
-
+import {Row, Col} from 'react-materialize';
 import {
   BrowserRouter as Router,
   Route,
@@ -23,23 +23,28 @@ class UserProfile extends Component {
   render() {
     return (
       <div className='UserProfileBox'>
-        <p>Hello, {this.props.user.name}!</p>
+       
         <Router>
           <div>
-            <ul>
-              <li>{this.props.user.name}</li>
-              <li><Link to='/profile'>Profile</Link></li>
-              <li><Link to='/campaigns/new'>New Campaign</Link></li>
-              <li><Link to='/campaigns'>My Campaigns</Link></li>
-            </ul>
-            <Route path='/profile' component={Profile} />
-            <Route path='/campaigns/new' render={(props) => (
-              <NewCampaign {...props} user={this.state.user} />
-            )} />
-            <Route path='/campaigns' render={(props) => (
-              <Campaigns {...props} user={this.state.user} getCampaign={this.props.getCampaign}/>
-            )} />
-           
+            <Row>
+              <Col s={3} m={3}>
+                <h2>Hey, {this.props.user.name}!</h2>
+              </Col>
+              <Col s={9} m={9}>
+                <ul>
+                  <li className="inline" ><Link to='/profile'>Profile</Link></li>
+                  <li className="inline"><Link to='/campaigns/new'>New Campaign</Link></li>
+                  <li className="inline"><Link to='/campaigns'>My Campaigns</Link></li>
+                </ul>
+              </Col>
+              <Route path='/profile' component={Profile} />
+              <Route path='/campaigns/new' render={(props) => (
+                <NewCampaign {...props} user={this.state.user} />
+              )} />
+              <Route path='/campaigns' render={(props) => (
+                <Campaigns {...props} user={this.state.user} getCampaign={this.props.getCampaign}/>
+              )} />
+            </Row>
           </div>
           
         </Router>
