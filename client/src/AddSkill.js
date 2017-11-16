@@ -28,6 +28,7 @@ class AddSkill extends Component {
                 spellList: result.data.results
             })
             console.log(this.props.char)
+            console.log(this.props.char._id)
         })
     }
 
@@ -52,7 +53,7 @@ class AddSkill extends Component {
             spellId: this.state.spellUrl,
             name: this.state.spellName,
             ability: this.state.type,
-            character: this.props.char._id
+            char: this.props.char._id
         })
     }
     //props for spells dropdown

@@ -27,18 +27,18 @@ router.post('/spell/search', function(req, res, next) {
 });
 
 router.post('/spell/add', function(req, res, next) {
-    console.log('Character is ' + req.body.chararacter)
+    console.log('Character is ' + req.body.char)
     Ability.create({
         name: req.body.name,
         abilityType: req.body.ability,
         url: req.body.spellId,
-        chararacter: req.body.chararacter
+        chararacter: req.body.char
     }, function(err, result) {
         if (err) {
             res.send(err.message)
         }
         console.log("The spell id is" + result._id)
-        Character.update({ _id: req.body.chararacter }, { $push: { abilities: result._id } }, function(err, user) {
+        Character.update({ _id: req.body.char }, { $push: { abilities: result._id } }, function(err, user) {
             if (err) console.log(err);
         })
     })
