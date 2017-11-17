@@ -22,10 +22,9 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div className='UserProfileBox'>
-       
+      <div className='background'>
         <Router>
-          <div>
+          <div className="layer">
             <Row>
               <Col s={3} m={3}>
                 <h3>Hey, {this.props.user.name}!</h3>

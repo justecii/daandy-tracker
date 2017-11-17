@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Home extends Component {
     render(){
         return(
-            <div className='homepage'>
+            <div className='background'>
                 <div className='layer'>
                     <h2 className="welcome"> Welcome to your online Campaign tracker for Dungeons and Dragons 5E</h2>
                     <p>Login or Sign Up to begin your D &amp; D campaign. </p>

@@ -21,6 +21,7 @@ class CharacterList extends Component {
             align: '',
             level: '',
             characters: [],
+            charAbility: [],
             viewChar: false
         }
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -94,9 +95,11 @@ class CharacterList extends Component {
             console.log(result.data[0])
             this.setState({
                 charInfo: result.data[0],
+                charAbility: result.data[0].abilities,
                 viewChar: true
             })
         })
+        
     }
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
@@ -104,17 +107,26 @@ class CharacterList extends Component {
                 <li key={index}>{item.name}</li>
                 <Button value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
             </Row>
-        ) 
-    )
+            ) 
+        )
+        // let mappedSpells =this.
     if (this.state.viewChar === true){
         return(
             <div>
-                <h2>{this.state.charInfo.name}</h2>
-                <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
-                <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
-                <img className="fitImage" src={this.state.charInfo.image} alt="Character Image"/>
-                <Button>Update Character</Button>
+                <Row>
+                    <Col s={0} m={3}>
+                        <img className="fitImage" src={this.state.charInfo.image} alt="Character Image" />
+                    </Col>
+                    <Col s={12} m={9}>
+                        <h2>{this.state.charInfo.name}</h2>
+                        <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
+                        <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
+                        <Button>Update Character</Button>
+                    </Col>
+                
+                
                 <br/>
+                </Row>
                 <AddSkill char={this.state.charInfo}/>
             </div>
         )
