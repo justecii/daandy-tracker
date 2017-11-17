@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/danddy-tracker');
+// mongoose.connect('mongodb://localhost/danddy-tracker');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mydbname');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
