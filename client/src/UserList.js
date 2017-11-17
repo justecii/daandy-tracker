@@ -19,7 +19,6 @@ class UserList extends Component {
             rtl: false
         }
         this.componentDidMount = this.componentDidMount.bind(this)
-        this.componentDidUpdate = this.componentDidUpdate.bind(this)
     }
     componentDidMount() {
         //this gets all users for the form
@@ -57,8 +56,12 @@ class UserList extends Component {
         })
         )
     }
-    componentDidUpdate() {
-        console.log(this.state.campUsers)
+    deleteUser(e){
+        console.log(this.props)
+        console.log(this.state)
+        axios.post('/users/delete', {
+            user: e.target.value
+        })
     }
     
     render(){
@@ -66,8 +69,11 @@ class UserList extends Component {
             { value: item.id, label: item.name }
         ));
         let currentUsers = this.state.campUsers.map((item, index) => (
-            <li key={index}>{item.name}</li>
-        ))
+            <Row>
+                <li key={index}>{item.name}</li>
+                <Button key={index} value={item.id} onClick={(e) => this.deleteUser(e)}>Remove</Button>
+            </Row>
+        ));
         return(
             <div>
                 <Row>

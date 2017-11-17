@@ -18,11 +18,6 @@ class CurrentCamp extends Component {
         super(props)
     
     }
-    onClick(e){
-        e.preventDefault();
-        console.log(this.state)
-        console.log(this.props)
-    }
     render(){
         return(
             <div>

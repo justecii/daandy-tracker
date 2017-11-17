@@ -36,7 +36,9 @@ class UserProfile extends Component {
                   <Col s={12} m={4}><li><Link to='/campaigns' >My Campaigns</Link></li></Col>
                 </ul>
               </Col>
-              <Route path='/profile' component={Profile} />
+              <Route path='/profile' render={(props) => (
+                <Profile {...props} user={this.state.user} />
+              )}  />
               <Route path='/campaigns/new' render={(props) => (
                 <NewCampaign {...props} user={this.state.user} />
               )} />

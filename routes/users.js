@@ -10,6 +10,15 @@ router.get('/', function(req, res, next) {
         res.send(users)
     })
 });
+
+//get user info for profile page
+router.post('/profile', function(req, res, next) {
+    Campaign.find({ users: req.body.user }, function(err, user) {
+        if (err) return console.log(err)
+        res.send(user)
+    });
+});
+
 //get all of a users campaigns
 router.post('/campaign', function(req, res, next) {
     console.log(req.body.user)
@@ -51,12 +60,16 @@ router.post('/campaign/new', function(req, res, next) {
     })
     //adds a new user to a campaign, adds campaign to that user
 router.post('/campaign/user', function(req, res, next) {
-    User.update({ _id: req.body.user }, { $push: { campaigns: req.body.campaign } }, function(err, user) {
-        if (err) console.log(err);
+        User.update({ _id: req.body.user }, { $push: { campaigns: req.body.campaign } }, function(err, user) {
+            if (err) console.log(err);
+        })
+        Campaign.update({ _id: req.body.campaign }, { $push: { users: req.body.user } }, function(err, campaign) {
+            if (err) console.log(err);
+        })
     })
-    Campaign.update({ _id: req.body.campaign }, { $push: { users: req.body.user } }, function(err, campaign) {
-        if (err) console.log(err);
-    })
+    //remove a user from Campaign
+router.post('/delete', function(req, res, next) {
+
 })
 
 router.post('/chars', function(req, res, next) {
