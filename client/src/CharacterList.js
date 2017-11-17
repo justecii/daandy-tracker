@@ -103,12 +103,16 @@ class CharacterList extends Component {
                 charAbility: result.data[0].abilities,
                 viewChar: true
             })
-        }) 
-        console.log("ADOREE JACKSON")
-        for(var i =0; i < this.state.charAbility.length; i++){
-            console.log(this.state.charAbility[i])
-        }
+        })
         
+    }
+    deleteChar(){
+        console.log(this.props)
+        console.log(this.state.charInfo)
+        axios.post('/users/chars/delete', {
+            id: this.state.charInfo._id,
+            campaign: this.props.campaign._id
+        })
     }
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
@@ -133,7 +137,7 @@ class CharacterList extends Component {
                     </Col>
                     <Col s={12} m={9}>
                         <h2 className="fltLeft">{this.state.charInfo.name}</h2>
-                        <Button className="fltLeft updateChar">Update Character</Button>
+                        <Button onClick={(e) => this.deleteChar(e)} className="fltLeft updateChar">Delete Character</Button>
                         <table>
                             <tbody>
                                 <tr>

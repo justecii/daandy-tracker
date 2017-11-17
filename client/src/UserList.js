@@ -60,7 +60,8 @@ class UserList extends Component {
         console.log(this.props)
         console.log(this.state)
         axios.post('/users/delete', {
-            user: e.target.value
+            user: e.target.value,
+            campaign: this.props.campaign._id
         })
     }
     
@@ -70,8 +71,8 @@ class UserList extends Component {
         ));
         let currentUsers = this.state.campUsers.map((item, index) => (
             <Row>
-                <li key={index}>{item.name}</li>
-                <Button key={index} value={item.id} onClick={(e) => this.deleteUser(e)}>Remove</Button>
+                <li className="listItem" key={index}>{item.name}</li>
+                <Button className="listItem" key={index} value={item.id} onClick={(e) => this.deleteUser(e)}>Remove</Button>
             </Row>
         ));
         return(

@@ -69,7 +69,12 @@ router.post('/campaign/user', function(req, res, next) {
     })
     //remove a user from Campaign
 router.post('/delete', function(req, res, next) {
+    // to be updated
+})
 
+// remove a character from campaign
+router.post('/char/delete', fuction(req, res, next) {
+    // to be updated
 })
 
 router.post('/chars', function(req, res, next) {
