@@ -28,15 +28,15 @@ class CharacterList extends Component {
     }
     componentDidMount(){
         var campaignId = this.props.campaign._id;
-        console.log(this.props)
-        console.log(campaignId)
         axios.post('/users/chars', {
             campaign: campaignId,
             user: this.props.user
         }).then(result => {
             this.setState({characters: result.data})
         })
+        console.log(this.state.charAbility)
     }
+
     nameSubmit(e){
         var set = e.target.value;
         this.setState({
@@ -92,24 +92,32 @@ class CharacterList extends Component {
         axios.post('/users/chars/:id', {
             id: e.target.value
         }).then(result => {
-            console.log(result.data[0])
             this.setState({
                 charInfo: result.data[0],
                 charAbility: result.data[0].abilities,
                 viewChar: true
             })
-        })
+        }) 
+        console.log("ADOREE JACKSON")
+        for(var i =0; i < this.state.charAbility.length; i++){
+            console.log(this.state.charAbility[i])
+        }
         
     }
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
             <Row>
                 <li key={index}>{item.name}</li>
-                <Button value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
+                <Button key={index} value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
             </Row>
             ) 
         )
-        // let mappedSpells =this.
+        let mappedSpells =this.state.charAbility.map((item, index) => (
+            <tr>
+                <td>Spell {index + 1}</td>
+                <td>{item}</td>
+            </tr>
+        ))
     if (this.state.viewChar === true){
         return(
             <div>
@@ -118,10 +126,26 @@ class CharacterList extends Component {
                         <img className="fitImage" src={this.state.charInfo.image} alt="Character Image" />
                     </Col>
                     <Col s={12} m={9}>
-                        <h2>{this.state.charInfo.name}</h2>
-                        <h4>Level: {this.state.charInfo.level} / Class: {this.state.charInfo.class}</h4>
-                        <h4>Alignment: {this.state.charInfo.alignment} / Race: {this.state.charInfo.race}</h4>
-                        <Button>Update Character</Button>
+                        <h2 className="fltLeft">{this.state.charInfo.name}</h2>
+                        <Button className="fltLeft updateChar">Update Character</Button>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className="bold">Level:</td>
+                                    <td>{this.state.charInfo.level}</td>
+                                    <td className="bold">Class:</td>
+                                    <td>{this.state.charInfo.class}</td>
+                                </tr>
+                                <tr>
+                                    <td className="bold">Alignment</td>
+                                    <td>{this.state.charInfo.alignment}</td>
+                                    <td className="bold">Race</td>
+                                    <td>{this.state.charInfo.race}</td>
+                                </tr>
+                                {mappedSpells}
+                            </tbody>                            
+                        </table>
+                        
                     </Col>
                 
                 

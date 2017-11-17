@@ -69,8 +69,12 @@
     }
     
     .fitImage {
-        height: 300px;
+        height: 350px;
         border: 3px solid rgb(48, 0, 50);
+    }
+    
+    .bold {
+        font-weight: 900;
     }
     
     h1,
@@ -141,7 +145,12 @@
     
     h2 {
         margin-top: 1%;
-        text-align: center;
+    }
+    
+    .updateChar {
+        margin-top: 25px;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
     }
     
     .newForm {
