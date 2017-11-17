@@ -15,8 +15,6 @@ class NewCampaign extends Component {
         axios.get('/users')
             .then(result => {
                 this.setState({userList: result.data})
-                console.log(this.state.userList)
-                console.log(this.state.userList[0].email)
             })
     }
     onSubmit(e){
@@ -28,8 +26,6 @@ class NewCampaign extends Component {
 
     onClick(e){
         e.preventDefault();
-        console.log(this.state)
-        console.log(this.props)
         axios.post('/users/campaign/new', {
             title: this.state.title,
             user: this.state.user

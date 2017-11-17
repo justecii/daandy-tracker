@@ -16,7 +16,6 @@ class MapsList extends Component{
 
     componentDidMount(){
         var campaignId = this.props.campaign._id;
-        console.log(campaignId)
         axios.post('/users/maps', {
             campaign: campaignId,
             user: this.props.user
@@ -42,7 +41,14 @@ class MapsList extends Component{
             title: this.state.title,
             image: this.state.image,
             campaign: this.props.campaign._id
-        })
+        }).then(
+            axios.post('/users/maps', {
+                campaign: this.props.campaign._id,
+                user: this.props.user
+            }).then(result => {
+                this.setState({ maps: result.data })
+            })
+        )
     }
     viewMap(e) {
         axios.post('/users/map/:id', {

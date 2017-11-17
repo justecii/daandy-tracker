@@ -22,7 +22,6 @@ class NotesList extends Component{
             user: this.props.user
         }).then(result => {
             this.setState({ notes: result.data }) 
-            console.log(this.state.notes)
         })
     }
     titleSubmit(e) {
@@ -43,7 +42,14 @@ class NotesList extends Component{
             title: this.state.title,
             content: this.state.content,
             campaign: this.props.campaign._id
-        })
+        }).then(
+            axios.post('/users/notes', {
+                campaign: this.props.campaign._id,
+                user: this.props.user
+            }).then(result => {
+                this.setState({ notes: result.data })
+            })
+        )
     }
     viewNote(e){
         axios.post('/users/note/:id', {

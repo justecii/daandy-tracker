@@ -34,7 +34,6 @@ class CharacterList extends Component {
         }).then(result => {
             this.setState({characters: result.data})
         })
-        console.log(this.state.charAbility)
     }
 
     nameSubmit(e){
@@ -85,7 +84,14 @@ class CharacterList extends Component {
             level: this.state.level,
             image: this.state.image,
             campaign: this.props.campaign._id
-        })
+        }).then(
+            axios.post('/users/chars', {
+                campaign: this.props.campaign._id,
+                user: this.props.user
+            }).then(result => {
+                this.setState({ characters: result.data })
+            })
+        )
     }
 
     viewChar(e) {
