@@ -50,7 +50,47 @@
     .App {
         margin: 0 auto;
     }
+    
+    .input-field label {
+        color: #310033;
+        font-size: 1.2rem;
+    }
+    
+    .input-field input[type=text]:focus+label {
+        color: rgb(48, 0, 50) !important;
+    }
+    
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid #310033 !important;
+        box-shadow: 0 1px 0 0 #310033 !important;
+    }
+    /* valid color */
+    
+    .input-field input[type=text].valid {
+        border-bottom: 1px solid #310033 !important;
+        box-shadow: 0 1px 0 0 #310033 !important;
+    }
+    /* invalid color */
+    
+    .input-field input[type=text].invalid {
+        border-bottom: 1px solid #310033 !important;
+        box-shadow: 0 1px 0 0 #310033 !important;
+    }
+    /* icon prefix focus color */
+    
+    .input-field .prefix.active {
+        color: #310033;
+    }
     /* Styling for current campaign */
+    
+    .myInput {
+        color: rgb(48, 0, 50) !important;
+        border-bottom: 1px solid rgb(48, 0, 50) !important;
+    }
+    
+    .redHover:hover {
+        color: red;
+    }
     
     .currentCamp {
         background-color: rgba(196, 50, 53, 0.7);
@@ -75,12 +115,21 @@
     
     .bold {
         font-weight: 900;
+        font-size: 1.4rem;
     }
     
     h1,
     h2,
     h3 {
         font-family: 'Metal Mania', cursive;
+    }
+    
+    .listItem {
+        list-style: none;
+        font-size: 1rem;
+        display: inline;
+        margin: 0 2%;
+        width: 40%;
     }
     
     .fltLeft {

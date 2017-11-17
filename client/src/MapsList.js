@@ -59,8 +59,8 @@ class MapsList extends Component{
     render(){
         let mappedMaps = this.state.maps.map((item, index) => (
             <Row>
-                <li key={index}>{item.title}</li>
-                <Button value={item._id} onClick={(e) => this.viewMap(e)}>View Map</Button>
+                <li className="listItem" key={index}>{item.title}</li>
+                <Button className="listItem" value={item._id} onClick={(e) => this.viewMap(e)}>View</Button>
             </Row>
         ) 
     )
@@ -80,9 +80,9 @@ class MapsList extends Component{
                     </Col>
                     <Col s={12} m={8}>
                         <form>
-                            <Input label='Title' onInput={(e) => this.titleSubmit(e)}/>
-                            <Input label='Upload Image' onInput={(e) => this.imageSubmit(e)} />
-                            <Button onClick={(e) => this.onClick(e)}>New Map</Button>
+                            <Input className="myInput" label='Title' onInput={(e) => this.titleSubmit(e)}/>
+                            <Input className="myInput" label='Upload Image' onInput={(e) => this.imageSubmit(e)} />
+                            <Button onClick={(e) => this.onClick(e)}>Save Map</Button>
                         </form>
                     </Col>
                 </Row>

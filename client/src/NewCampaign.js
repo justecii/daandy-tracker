@@ -40,7 +40,7 @@ class NewCampaign extends Component {
         return(
             <div className="newForm">
                 <form>
-                    <Input label="Title" onInput={ (e) => this.onSubmit(e)} />
+                    <Input className="myInput" label="Title" onInput={ (e) => this.onSubmit(e)} />
                     <Button onClick={ (e) => this.onClick(e) }>Start Campaign</Button>
                 </form>
             </div>

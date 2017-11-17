@@ -81,7 +81,7 @@ class AddSkill extends Component {
         return(
             <div>
                 <Row>
-                    <Col s={12}>
+                    <Col s={12} m={5}>
                         <form>
                             <Row>
                                 <Col s={12} m={8}>
@@ -105,6 +105,8 @@ class AddSkill extends Component {
                                 </Col>
                             </Row>
                         </form>
+                    </Col>
+                    <Col s={12} m={7}>
                         <table>
                             <thead>
                                 <tr>
@@ -122,8 +124,8 @@ class AddSkill extends Component {
                             </tbody>
                         </table>
                         <Button onClick={(e) => this.addSpell(e)}>Add Spell</Button>
-                        
-                    </Col>
+                    </Col>    
+                    
                 </Row>
             </div>
         )

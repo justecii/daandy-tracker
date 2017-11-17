@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Input, Button, Row } from 'react-materialize';
+import { Input, Button, Row, Col } from 'react-materialize';
 import axios from 'axios';
 
 import {
@@ -67,8 +67,8 @@ class NotesList extends Component{
     render(){
         let mappedNotes = this.state.notes.map((item, index) => (
             <Row>
-                <li key={index}>{item.title}</li>
-                <Button value={item._id} onClick={(e) =>this.viewNote(e)}>View Note</Button>
+                <li className="listItem" key={index}>{item.title}</li>
+                <Button className="listItem" value={item._id} onClick={(e) =>this.viewNote(e)}>View</Button>
             </Row>
             )
         )
@@ -82,12 +82,18 @@ class NotesList extends Component{
         } else {
             return(
                 <div>
-                    {mappedNotes}
-                    <form>
-                        <Input label='Title' onInput={(e) => this.titleSubmit(e)} />
-                        <Input label='Note' onInput={(e) => this.contentSubmit(e)} />
-                        <Button onClick={(e) => this.onClick(e)}>Save Note</Button>
-                    </form>
+                    <Row>
+                        <Col s={12} m={4}>
+                            {mappedNotes}
+                        </Col>
+                        <Col s={12} m={8}>
+                            <form>
+                                <Input className="myInput" label='Title' onInput={(e) => this.titleSubmit(e)} />
+                                <Input className="myInput" type="textarea" label='Note' onInput={(e) => this.contentSubmit(e)} />
+                                <Button onClick={(e) => this.onClick(e)}>Save Note</Button>
+                            </form>
+                        </Col>
+                    </Row>
                 </div>
             )
         }

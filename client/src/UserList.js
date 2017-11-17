@@ -49,6 +49,7 @@ class UserList extends Component {
             user: this.state.selectValue,
             campaign: this.props.campaign._id
         })
+        this.componentDidMount();
     }
     render(){
         let mappedOptions = this.state.userList.map((item, index) => (

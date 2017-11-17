@@ -107,8 +107,8 @@ class CharacterList extends Component {
     render() {
         let mappedChars = this.state.characters.map((item, index) => (
             <Row>
-                <li key={index}>{item.name}</li>
-                <Button key={index} value={item._id} onClick={(e) => this.viewChar(e)}>View Character</Button>
+                <li className="listItem" key={index}>{item.name}</li>
+                <Button className="listItem" key={index} value={item._id} onClick={(e) => this.viewChar(e)}>View</Button>
             </Row>
             ) 
         )
@@ -161,12 +161,12 @@ class CharacterList extends Component {
                     <Col s={12} m={4}>{mappedChars}</Col>
                     <Col s={12} m={8}>
                     <form>
-                        <Input label="Name" onInput={(e) => this.nameSubmit(e)} />
-                        <Input label="Race" onInput={(e) => this.raceSubmit(e)} />
-                        <Input label="Class" onInput={(e) => this.classSubmit(e)} />
-                        <Input label="Alignment" onInput={(e) => this.alignSubmit(e)} />
-                        <Input label="Level" onInput={(e) => this.levelSubmit(e)} />
-                        <Input label="Image URL" onInput={(e) => this.imageSubmit(e)} />
+                        <Input className="myInput" label="Name" onInput={(e) => this.nameSubmit(e)} />
+                        <Input className="myInput" label="Race" onInput={(e) => this.raceSubmit(e)} />
+                        <Input className="myInput" label="Class" onInput={(e) => this.classSubmit(e)} />
+                        <Input className="myInput" label="Alignment" onInput={(e) => this.alignSubmit(e)} />
+                        <Input className="myInput" label="Level" onInput={(e) => this.levelSubmit(e)} />
+                        <Input className="myInput" label="Image URL" onInput={(e) => this.imageSubmit(e)} />
                         <Button onClick={(e) => this.onClick(e)}>Upload Character</Button>
                     </form>
                     </Col>

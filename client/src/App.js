@@ -147,9 +147,9 @@ class App extends Component {
         return (
           <Router>
             <div className='App'>
-                <Navbar brand="DandD" right className="brand-logo">
-                  <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
-                  <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+                <Navbar brand="Oversee D&amp;D" right className="brand-logo">
+                  <li><NavLink to='/profile' onClick={this.profileView} className="redHover" >Profile</NavLink></li>
+                  <li onClick={this.logOut}><NavLink to='/' className="redHover">Log Out</NavLink></li>
                 </Navbar>
                 <Route path='/profile' render={(props) => (
                   <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
@@ -162,9 +162,9 @@ class App extends Component {
         return (
           <Router>
             <div className='App'>
-                <Navbar brand="DandD" right className="brand-logo">
-                  <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
-                  <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+              <Navbar brand="Oversee D&amp;D" right className="brand-logo">
+                <li><NavLink to='/profile' onClick={this.profileView} className="redHover">Profile</NavLink></li>
+                <li onClick={this.logOut}><NavLink to='/' className="redHover">Log Out</NavLink></li>
                 </Navbar>
                 <Route path='/profile' render={(props) => (
                   <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
@@ -177,9 +177,9 @@ class App extends Component {
         return (
           <Router>
             <div className='App'>
-              <Navbar brand="DandD" right className="brand-logo">
-                <li ><a onClick={this.openModal}>Login</a></li>
-                <li ><a onClick={this.openSignUp}>Sign Up</a></li>
+              <Navbar brand="Oversee D&amp;D" right className="brand-logo">
+                <li ><a onClick={this.openModal} className="redHover">Login</a></li>
+                <li ><a onClick={this.openSignUp} className="redHover">Sign Up</a></li>
               </Navbar>
               <Modal
                 isOpen={this.state.loginIsOpen}
