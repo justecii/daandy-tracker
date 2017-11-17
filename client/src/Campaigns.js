@@ -39,7 +39,7 @@ class Campaigns extends Component {
     render(){
         let mappedCamp = this.state.campaigns.map((item, index) => (
             <Row>
-                <Button key={index} onClick={(e) => this.onClick(e)} value={item._id}>{item.title}</Button>
+                <Button className="choiceBtn" key={index} onClick={(e) => this.onClick(e)} value={item._id}>{item.title}</Button>
             </Row>
         )
         );

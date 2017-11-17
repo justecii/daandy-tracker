@@ -27,13 +27,12 @@ class CurrentCamp extends Component {
         return(
             <div>
                 <Row>
-                    <h2>{this.props.campaign.title}</h2>
+                    <h2>{this.props.campaign.title} - Campaign</h2>
                 </Row>
                 <Row>
-                    <Button onClick={(e) => this.onClick(e)}>Click for Props</Button>
                     <Router>
-                        <div>
-                            <ul>
+                        <div className="currentCamp">
+                            <ul className='campaignNav'>
                                 <Link className="campaignList" to='/characters'>Characters</Link>
                                 <Link className="campaignList" to='/maps'>Maps</Link>
                                 <Link className="campaignList" to='/notes'>Notes</Link>

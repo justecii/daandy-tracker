@@ -28,13 +28,13 @@ class UserProfile extends Component {
           <div>
             <Row>
               <Col s={3} m={3}>
-                <h2>Hey, {this.props.user.name}!</h2>
+                <h3>Hey, {this.props.user.name}!</h3>
               </Col>
               <Col s={9} m={9}>
-                <ul>
-                  <li className="inline" ><Link to='/profile'>Profile</Link></li>
-                  <li className="inline"><Link to='/campaigns/new'>New Campaign</Link></li>
-                  <li className="inline"><Link to='/campaigns'>My Campaigns</Link></li>
+                <ul className="userNav">
+                  <Col s={12} m={4}><li><Link to='/profile'>Profile</Link></li></Col>
+                  <Col s={12} m={4}><li><Link to='/campaigns/new'>New Campaign</Link></li></Col>
+                  <Col s={12} m={4}><li><Link to='/campaigns' >My Campaigns</Link></li></Col>
                 </ul>
               </Col>
               <Route path='/profile' component={Profile} />

@@ -147,14 +147,16 @@ class App extends Component {
         return (
           <Router>
             <div className='App'>
-              <Navbar brand="DandD" right className="brand-logo">
-                <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
-                <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
-              </Navbar>
-              <Route path='/profile' render={(props) => (
-                <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
-              )} />
-              <Route exact path='/' component={Home} />
+              <div className='layer'>
+                <Navbar brand="DandD" right className="brand-logo">
+                  <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
+                  <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+                </Navbar>
+                <Route path='/profile' render={(props) => (
+                  <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
+                )} />
+                <Route exact path='/' component={Home} />
+              </div>
             </div>
           </Router>
         )
@@ -162,14 +164,16 @@ class App extends Component {
         return (
           <Router>
             <div className='App'>
-              <Navbar brand="DandD" right className="brand-logo">
-                <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
-                <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
-              </Navbar>
-              <Route path='/profile' render={(props) => (
-                <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
-              )} />
-              <Route exact path='/' component={Home} />
+              <div className='layer'>
+                <Navbar brand="DandD" right className="brand-logo">
+                  <li><NavLink to='/profile' onClick={this.profileView}>Profile</NavLink></li>
+                  <li onClick={this.logOut}><NavLink to='/'>Log Out</NavLink></li>
+                </Navbar>
+                <Route path='/profile' render={(props) => (
+                  <UserProfile {...props} user={this.state.user} logout={this.logout} getCampaign={this.getCampaign} />
+                )} />
+                <Route exact path='/' component={Home} />
+              </div>
             </div>
           </Router>
         )};

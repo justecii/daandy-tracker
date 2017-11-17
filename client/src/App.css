@@ -14,6 +14,14 @@
         color: #e6e6e8;
     }
     
+    a {
+        color: #e6e6e8;
+    }
+    
+    a:hover {
+        color: rgb(48, 0, 50);
+    }
+    
     nav {
         background-color: rgb(48, 0, 50);
     }
@@ -28,6 +36,11 @@
         font-family: 'Spectral SC', serif;
     }
     
+    .userNav {
+        font-size: 1.5rem;
+        margin-bottom: 15%;
+    }
+    
     body {
         font-family: 'Spectral SC', serif;
         background-color: #c43235;
@@ -36,26 +49,32 @@
     
     .App {
         text-align: center;
+        background-image: url("/img/dragon-image.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        position: relative;
+        width: 100%;
+        min-height: 776px;
+        height: 100%;
+        margin: 0 auto;
     }
+    /* Styling for current campaign */
     
-    .SignupBox {
-        background: lightgreen;
-        padding: 0.5em;
-    }
-    
-    .LoginBox {
-        background: lightblue;
-        padding: 0.5em;
-    }
-    
-    .LogoutBox {
-        background: lightred;
-        padding: 0.5em;
+    .currentCamp {
+        background-color: rgba(196, 50, 53, 0.7);
+        min-height: 480px;
     }
     
     .campaignList {
         color: #300032;
         margin: 20px;
+        font-size: 1.5rem;
+    }
+    
+    .campaignNav {
+        margin-top: 0px;
+        background-color: #e6e6e8;
     }
     
     .fitImage {
@@ -63,7 +82,8 @@
     }
     
     h1,
-    h2 {
+    h2,
+    h3 {
         font-family: 'Metal Mania', cursive;
     }
     
@@ -92,18 +112,11 @@
         height: 30px;
         line-height: 30px;
     }
-    /* Home page stylings here */
     
-    .homepage {
-        background-image: url("/img/dragon-image.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        position: relative;
-        width: 100%;
-        height: 750px;
-        margin: 0 auto;
+    .choiceBtn {
+        width: 40%;
     }
+    /* Home page stylings here */
     
     p {
         font-size: 1.3rem;
@@ -125,4 +138,8 @@
     h2 {
         margin-top: 1%;
         text-align: center;
+    }
+    
+    .newForm {
+        margin-bottom: 10%;
     }
