@@ -19,6 +19,7 @@ class UserList extends Component {
             rtl: false
         }
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.componentDidUpdate = this.componentDidUpdate.bind(this)
     }
     componentDidMount() {
         //this gets all users for the form
@@ -26,7 +27,6 @@ class UserList extends Component {
             .then(result => {
                 this.setState({ userList: result.data })
             })
-
         //this gets users that are active for this campaign
         var campaignId = this.props.campaign._id;
         axios.post('/users/active', {
@@ -48,9 +48,19 @@ class UserList extends Component {
         axios.post('/users/campaign/user', {
             user: this.state.selectValue,
             campaign: this.props.campaign._id
+        }).then(
+        axios.post('/users/active', {
+            campaign: this.props.campaign._id
+        }).then(result => {
+            this.setState({ campUsers: result.data })
+            console.log(this.state.campUsers)
         })
-        this.componentDidMount();
+        )
     }
+    componentDidUpdate() {
+        console.log(this.state.campUsers)
+    }
+    
     render(){
         let mappedOptions = this.state.userList.map((item, index) => (
             { value: item.id, label: item.name }

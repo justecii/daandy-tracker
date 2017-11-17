@@ -1,5 +1,5 @@
     .purpleShade {
-        color: rgb(48, 0, 50);
+        color: rgb(48, 0, 50) !important;
     }
     
     .blackShade {
@@ -11,7 +11,7 @@
     }
     
     .whiteShade {
-        color: #e6e6e8;
+        color: rgb(230, 230, 232);
     }
     
     a {

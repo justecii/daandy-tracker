@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 import { Input, Button, Row, Col } from 'react-materialize';
 import axios from 'axios';
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter
-} from 'react-router-dom';
 
 class NotesList extends Component{
     constructor(props) {

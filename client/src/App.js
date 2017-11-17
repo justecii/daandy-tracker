@@ -27,7 +27,7 @@ const customStyles = {
     marginRight: '-50%',
     padding: '25px',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'rgb(48, 0, 50)'
+    backgroundColor: 'rgb(196, 50, 53)'
   }
 };
 
@@ -188,7 +188,7 @@ class App extends Component {
                 style={customStyles}
                 contentLabel="Login Modal"
               >
-                <h2 ref={subtitle => this.subtitle = subtitle}>Login</h2>
+                <h2 className="purpleShade" ref={subtitle => this.subtitle = subtitle}>Login</h2>
                 <Login lift={this.liftTokenToState}/>
                 <Button className="fltRight" onClick={this.closeModal}>Cancel</Button>
               </Modal>
@@ -199,7 +199,7 @@ class App extends Component {
                 style={customStyles}
                 contentLabel="Sign Up Modal"
               >
-                <h2 ref={subtitle => this.subtitle = subtitle}>Sign Up</h2>
+                <h2 className="purpleShade" ref={subtitle => this.subtitle = subtitle}>Sign Up</h2>
                 <Signup lift={this.liftTokenToState} />
                 <Button className="inline" onClick={this.closeSignUp}>Cancel</Button>
               </Modal>
