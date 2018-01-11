@@ -25,7 +25,7 @@ class NewCampaign extends Component {
     }
 
     onClick(e){
-        // e.preventDefault();
+        e.preventDefault();
         axios.post('/users/campaign/new', {
             title: this.state.title,
             user: this.state.user

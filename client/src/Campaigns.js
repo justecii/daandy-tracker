@@ -23,7 +23,7 @@ class Campaigns extends Component {
         })
     }
     onClick(e){
-        // e.preventDefault();
+        e.preventDefault();
         var camp = e.target.value;
         axios.post('/users/list', {
             id: camp
